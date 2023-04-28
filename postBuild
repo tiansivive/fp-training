@@ -1,0 +1,4 @@
+conda install nodejs
+npm install -g tslab@1.0.16
+npm install
+tslab install

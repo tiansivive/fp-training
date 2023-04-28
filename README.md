@@ -1,0 +1,1 @@
+[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/tiansivive/fp-training/HEAD?labpath=notebooks%2F01-promises.ipynb)

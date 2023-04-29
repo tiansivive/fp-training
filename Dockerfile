@@ -2,7 +2,7 @@
 
 
 # Dockerfile to build a prebuilt image to run this example on mybinder.org.
-FROM node:lts-hydrogen
+FROM node:hydrogen-alpine
 
 # cache-busting to force rebuild the image in mybinder.org.
 RUN echo cache-busting-6
@@ -12,7 +12,10 @@ RUN apt-get install -y libzmq3-dev cmake python3-pip
 
 RUN rm -rf /var/lib/apt/lists/*
 
-RUN pip3 install --no-cache-dir -U jupyterlab notebook jupyterhub
+RUN pip3 install --no-cache-dir -U jupyterlab notebook jupyterhub jupyterthemes
+
+#Set up jupyter theme
+RUN jt -t oceans16 -f fira -fs 11
 
 # Support UTF-8 filename in Python (https://stackoverflow.com/a/31754469)
 ENV LC_CTYPE=C.UTF-8
@@ -39,6 +42,7 @@ RUN git clone --depth 1 https://github.com/tiansivive/fp-training.git
 WORKDIR ${HOME}/fp-training
 
 RUN npm install
+
 
 # Notes:
 # 1. Do not use ENTRYPOINT because mybinder need to run a custom command.

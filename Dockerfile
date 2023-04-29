@@ -2,7 +2,7 @@
 
 
 # Dockerfile to build a prebuilt image to run this example on mybinder.org.
-FROM node:hydrogen-alpine
+FROM node:lts-hydrogen
 
 # cache-busting to force rebuild the image in mybinder.org.
 RUN echo cache-busting-6

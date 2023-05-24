@@ -9,14 +9,17 @@ export const map =
     promise.then(f);
 
 export const chain =
-  <A, B>(fa: (value: A) => Promise<B>) =>
+  <A, B>(f: (value: A) => Promise<B>) =>
   (promise: Promise<A>) =>
-    promise.then(fa);
+    promise.then(f);
 
 export const reject =
   <E>(error: E) =>
   <A>(promise: Promise<A>) =>
     Promise.reject(error);
+
+export const filter = <A>(f: (a: A) => boolean) =>
+  chain((a: A) => (f(a) ? of(a) : Promise.reject()));
 
 export const fail =
   <E>(error: E) =>
